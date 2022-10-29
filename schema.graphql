@@ -1,6 +1,35 @@
-type ExampleEntity @entity {
+type Pool @entity {
   id: ID!
-  count: BigInt!
-  _pool: Bytes! # address
-  _token1: Bytes! # address
+  address: Bytes! # address
+  token1: Bytes! # address
+  token2: Bytes! # address
+  createdAt: BigInt! # uint256
 }
+
+type LiquidityAdded @entity {
+  id: ID!
+  from: Bytes! # address
+  amount1: BigInt!
+  amount2: BigInt!
+  pool: Pool!
+  createdAt: BigInt! # uint256
+}
+
+type LiquidityWithdrawn @entity {
+  id: ID!
+  from: Bytes! # address
+  amount1: BigInt!
+  amount2: BigInt!
+  lpTokens: BigInt!
+  pool: Pool!
+  createdAt: BigInt! # uint256
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+  pool: Pool!
+  createdAt: BigInt! # uint256
+}
+
