@@ -1,0 +1,23 @@
+specVersion: 0.0.1
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum
+    name: LiquidityPoolFactory
+    network: goerli
+    source:
+      address: "0xB017Bf8c5fBc6517Edcf8409A5F8200125644a4C"
+      abi: LiquidityPoolFactory
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - PoolCreated
+      abis:
+        - name: LiquidityPoolFactory
+          file: ./abis/LiquidityPoolFactory.json
+      eventHandlers:
+        - event: PoolCreated(indexed address,indexed address,indexed address)
+          handler: handlePoolCreated
+      file: ./src/liquidity-pool-factory.ts
